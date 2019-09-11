@@ -25,4 +25,13 @@
                 "e" "1110"
                 "f" "1111"})
 
+(->> (for [x (range 64)]
+       (Integer/toString x 2))
+     (map (fn [x] (str "000000" x)))
+     (map #(take-last 6 %))
+     (map #(apply str %)))
+
+
+
+
 (defn -main [] (print "HELLO"))
