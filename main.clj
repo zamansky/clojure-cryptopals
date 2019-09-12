@@ -40,7 +40,6 @@
 
 
 
-
 (def bin-string(str/join "" (-> input-string
                                 hex->binary
                                 )))
@@ -48,10 +47,18 @@
 
 (def bin2(map #(apply str %) (partition 6 bin-string)))
 
-
-
 (defn binary->base64 [s]
   (map (fn [x] ( (keyword x) base64-map) ) s))
+
+(defn encode-base64 [s]
+  (let [binary-string (str/join ""(-> input-string
+                                      hex->binary))
+        sixes (map #(apply str %) (partition 6 binary-string))
+        result (str/join "" (-> sixes binary->base64))
+        ]
+    result
+    ))
+
 
 (str/join ""(-> bin2
                 binary->base64))
