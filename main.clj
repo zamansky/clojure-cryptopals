@@ -6,9 +6,12 @@
 (def result-string "SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG9pc29ub3VzIG11c2hyb29t")
 
 
-(def hexlookup {:0 "0000" :1 "0001" :2 "0010" :3 "0011" :4 "0100" :5 "0101" :6 "0110"
-                :7 "0111" :8 "1000" :9 "1001" :a "1010" :b "1011":c "1100" :d "1101"
-                :e "1110" :f "1111"})
+(def hex-binstring-lookup {:0 "0000" :1 "0001" :2 "0010" :3 "0011" :4 "0100" :5 "0101" :6 "0110"
+                           :7 "0111" :8 "1000" :9 "1001" :a "1010" :b "1011":c "1100" :d "1101"
+                           :e "1110" :f "1111"})
+(def hex-binint-lookup {:0 0000 :1 0001 :2 0010 :3 0011 :4 0100 :5 0101 :6 0110
+                        :7 0111 :8 1000 :9 1001 :a 1010 :b 1011:c 1100 :d 1101
+                        :e 1110 :f 1111})
 
 (def base64-keys (->> (for [x (range 64)]
                         (Integer/toString x 2))
@@ -24,7 +27,7 @@
 
 (defn hex->binary [s]
   "converts a hex string to a list of strings of binary"
-  (map #( (keyword (str %)) hexlookup) s))
+  (map #( (keyword (str %)) hex-binstring-lookup ) s))
 
 (defn binary->base64 [s]
   "converts a list of 6 bit binary strings to a list of base64 chars"
