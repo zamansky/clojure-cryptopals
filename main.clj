@@ -66,4 +66,16 @@
     )
   )
 
+(defn c2 [s1 s2]
+  (let [s1-hex (map  #( (keyword (str %)) hex-binint-lookup ) s1)
+        s2-hex (map  #( (keyword (str %)) hex-binint-lookup ) s2)
+        result (->> (map vector  s1-hex s2-hex)
+                    (map (fn [ [a b] ] (bit-xor a b)) )
+                    (map #( (keyword (str %)) int-hex-char-lookup ) )
+                    (apply str))
+        ]
+    result
+    )
+  )
+
 (defn -main [] (print "HELLO"))
