@@ -31,6 +31,7 @@
   (map (fn [x] ( (keyword x) base64-map) ) s))
 
 (defn encode-base64 [s]
+  "Does not padd out input to ensure size is a multiple of 6 bits"
   (let [binary-string (str/join ""(-> input-string
                                       hex->binary))
         sixes (map #(apply str %) (partition 6 binary-string))
